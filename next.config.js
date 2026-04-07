@@ -1,6 +1,5 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: "export",        // 静态导出，Capacitor 打包所需
   distDir: "out",          // 输出目录
   images: {
@@ -12,4 +11,4 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
 };
 
-export default nextConfig;
+module.exports = nextConfig;
