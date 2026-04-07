@@ -10,3 +10,8 @@
 - `output: 'export'` 静态导出 → Capacitor 包装 → GitHub Actions 自动打包 APK
 - appId: `com.shazidadi.game`
 - 参见 `ANDROID_BUILD.md` 操作指南
+
+**问题修复（2026-04-07）：**
+- 修复了 Capacitor Android 平台同步错误问题
+- 执行 `npx cap add android` 重新初始化 Android 项目后解决
+- 现在 `npx cap sync android` 可以正常执行
