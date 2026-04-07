@@ -34,10 +34,10 @@ jobs:
         run: npm run build
 
       # 5. 设置 Java 环境（Android 构建需要）
-      - name: Setup Java 17
+      - name: Setup Java 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
 
       # 6. 安装 Capacitor CLI 并初始化 Android 项目
