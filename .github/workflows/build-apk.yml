@@ -44,25 +44,29 @@ jobs:
       - name: Install Capacitor CLI
         run: npm install -g @capacitor/cli
 
-      # 7. 同步 Web 资源到 Android 项目
+      # 7. 添加 Android 平台
+      - name: Add Android platform
+        run: npx cap add android
+
+      # 8. 同步 Web 资源到 Android 项目
       - name: Capacitor sync
         run: npx cap sync android
 
-      # 8. 设置 Android SDK
+      # 9. 设置 Android SDK
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
-      # 9. 赋予 Gradle 执行权限
+      # 10. 赋予 Gradle 执行权限
       - name: Grant execute permission for gradlew
         run: chmod +x android/gradlew
 
-      # 10. 构建 Debug APK（无需签名，可直接安装）
+      # 11. 构建 Debug APK（无需签名，可直接安装）
       - name: Build Debug APK
         run: |
           cd android
           ./gradlew assembleDebug --stacktrace
 
-      # 11. 上传 APK 为 Artifact（每次构建都保存）
+      # 12. 上传 APK 为 Artifact（每次构建都保存）
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
         with:
@@ -70,7 +74,7 @@ jobs:
           path: android/app/build/outputs/apk/debug/app-debug.apk
           retention-days: 30
 
-      # 12. 如果是版本标签推送，自动创建 Release 并附上 APK
+      # 13. 如果是版本标签推送，自动创建 Release 并附上 APK
       - name: Create GitHub Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v2
